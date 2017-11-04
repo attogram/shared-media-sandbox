@@ -15,9 +15,7 @@ $sandbox->setTitle('shared-media-sandbox');
 
 $sandbox->setMethods([ 
 	// Class, Method, Arg, Identifiers
-	['Logger', 'info', 'message', false],
-	['TEST1', 'testB', false, true],
-	['TEST2', 'testC', false, false],
+	//['Class', 'method', 'query', false],
 ]);
 	
 $sandbox->setVersions([

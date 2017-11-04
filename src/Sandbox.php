@@ -94,8 +94,9 @@ class Sandbox
         .'<meta http-equiv="X-UA-Compatible" content="IE=edge" />'
         .'<link rel="stylesheet" type="text/css" href="sandbox.css" />'
         .'<title>'.$this->sandboxTitle.' / sandbox</title>'
-        .'</head><body><h1><a href="./">'.$this->sandboxTitle
-        .'</a></h1><h2><a href="'.$this->self.'">sandbox</a></h2>';
+        .'</head><body><h1><a href="./">'
+		.$this->sandboxTitle
+        .'</a></h1><h2><a href="'.$this->self.'">Sandbox</a></h2>';
     }
 
     public function getFooter()
