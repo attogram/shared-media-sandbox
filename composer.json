@@ -6,7 +6,7 @@
     "homepage": "https://github.com/attogram/shared-media-sandbox",
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5",
+        "php": ">=5.5"
 	},
     "autoload": {
         "psr-4": {
