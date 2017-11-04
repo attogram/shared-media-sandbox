@@ -1,6 +1,6 @@
 <?php // attogram/shared-media-sandbox - sandbox.php - v0.0.1
 
-use Attogram\SharedMedia\Sandbox;
+use Attogram\SharedMedia\Sandbox\Sandbox;
 
 $autoload = '../vendor/autoload.php';
 if (!is_readable($autoload)) {

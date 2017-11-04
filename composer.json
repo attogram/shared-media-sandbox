@@ -6,8 +6,9 @@
     "homepage": "https://github.com/attogram/shared-media-sandbox",
     "minimum-stability": "dev",
     "require": {
-        "php": ">=5.5"
-	},
+        "php": ">=5.5",
+        "psr/log": "~1.0"
+    },
     "autoload": {
         "psr-4": {
             "Attogram\\SharedMedia\\Sandbox\\": "src/"
