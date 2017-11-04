@@ -8,11 +8,12 @@ class Sandbox
 
     const DEFAULT_LIMIT = 10;
 
-    public $methods = [ // Class, Method, Has Arg, Use Identifiers
-        ['TEST1', 'testA', 'query',  false],
-        ['TEST1', 'testB', false, true],
-        ['TEST2', 'testC', false, true],
-    ];
+    public $methods = [];
+	public $sources = [];
+    public $sandboxTitle = 'shared-media-sandbox';
+    public $versions = [];
+    public $versionsPad;
+	
     public $self;
     public $class;
     public $method;
@@ -25,15 +26,32 @@ class Sandbox
     public $pageids;
     public $titles;
 
-    public $sandboxTitle = 'shared-media-sandbox';
-    public $versions = [
-        'Attogram\SharedMedia\Sandbox\Sandbox',
-        'Attogram\SharedMedia\Sandbox\Tools',
-        'Attogram\SharedMedia\Sandbox\Sources',
-        'Attogram\SharedMedia\Sandbox\Logger',
-    ];
-    public $versionsPad = 36;
 
+	public function setMethods(array $methods)
+	{
+		$this->methods = $methods;
+	}
+
+	public function setSources(array $sources)
+	{
+		$this->sources = $sources;
+	}	
+	public function setTitle(string $title)
+	{
+		$this->sandboxTitle = $title;
+	}
+	
+	public function setVersions(array $versions)
+	{
+		$this->versions = $versions;
+	}
+	
+	public function setVersionsPad(int $versionsPad)
+	{
+		$this->versionsPad = $versionsPad;
+	}
+	
+	
     public function play()
     {
         $this->sandboxInit();
@@ -162,7 +180,7 @@ class Sandbox
     public function endpointSelect()
     {
         $select = '<select name="endpoint">';
-        foreach (Sources::$sources as $source) {
+        foreach ($this->sources as $source) {
             $selected = '';
             if (isset($this->endpoint) && $this->endpoint == $source) {
                 $selected = ' selected ';
@@ -228,7 +246,7 @@ class Sandbox
     {
         switch ($this->class) {
             case 'TEST':
-                return new Test($this->logger);
+                return new Test();
             default:
                 return new \StdClass();
         }
