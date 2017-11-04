@@ -12,7 +12,6 @@ class Sandbox
     public $sources = [];
     public $sandboxTitle = 'shared-media-sandbox';
     public $versions = [];
-    public $versionsPad;
 
     public $self;
     public $class;
@@ -45,12 +44,6 @@ class Sandbox
     {
         $this->versions = $versions;
     }
-
-    public function setVersionsPad(int $versionsPad)
-    {
-        $this->versionsPad = $versionsPad;
-    }
-
 
     public function play()
     {
@@ -101,11 +94,12 @@ class Sandbox
 
     public function getFooter()
     {
+        $padding = Tools::getLongestStringLengthInArray($this->versions);
         $foot = '<footer><hr />'
         .'<a href="./">'.$this->sandboxTitle
         .'</a> : <a href="'.$this->self.'">sandbox</a><pre>';
         foreach ($this->versions as $version) {
-            $foot .= str_pad($version, $this->versionsPad, ' ')
+            $foot .= str_pad($version, $padding, ' ')
                 .' v'.$version::VERSION
                 .'<br />';
         }

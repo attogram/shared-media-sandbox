@@ -27,17 +27,17 @@ class Tools
      */
     public static function safeString($string)
     {
-        if (!is_string($string)) {
-            return $string;
+        if (is_string($string)) {
+            return htmlentities($string);
         }
-        return htmlentities($string);
+        return htmlentities(print_r($string, true));
     }
 
     /**
      * @param string $name
      * @return mixed
      */
-    public static function getGet($name)
+    public static function getGet(string $name)
     {
         return isset($_GET[$name]) ? trim(urldecode($_GET[$name])) : null;
     }
@@ -52,16 +52,20 @@ class Tools
     }
 
     /**
-     * get a value from an array
-     *
      * @param array $array
-     * @param mixed|string $value
+     * @return int
      */
-    public static function getFromArray(array $array, string $value)
+    public static function getLongestStringLengthInArray(array $array)
     {
-        if (isset($array[$value])) {
-            return $array[$value];
+        $length = 0;
+        foreach ($array as $string) {
+            if (!is_string($string)) {
+                continue;
+            }
+            if (strlen($string) > $length) {
+                $length = strlen($string);
+            }
         }
-        return '';
+        return $length;
     }
 }
