@@ -9,11 +9,11 @@ class Sandbox
     const DEFAULT_LIMIT = 10;
 
     public $methods = [];
-	public $sources = [];
+    public $sources = [];
     public $sandboxTitle = 'shared-media-sandbox';
     public $versions = [];
     public $versionsPad;
-	
+
     public $self;
     public $class;
     public $method;
@@ -27,31 +27,31 @@ class Sandbox
     public $titles;
 
 
-	public function setMethods(array $methods)
-	{
-		$this->methods = $methods;
-	}
+    public function setMethods(array $methods)
+    {
+        $this->methods = $methods;
+    }
 
-	public function setSources(array $sources)
-	{
-		$this->sources = $sources;
-	}	
-	public function setTitle(string $title)
-	{
-		$this->sandboxTitle = $title;
-	}
-	
-	public function setVersions(array $versions)
-	{
-		$this->versions = $versions;
-	}
-	
-	public function setVersionsPad(int $versionsPad)
-	{
-		$this->versionsPad = $versionsPad;
-	}
-	
-	
+    public function setSources(array $sources)
+    {
+        $this->sources = $sources;
+    }
+    public function setTitle(string $title)
+    {
+        $this->sandboxTitle = $title;
+    }
+
+    public function setVersions(array $versions)
+    {
+        $this->versions = $versions;
+    }
+
+    public function setVersionsPad(int $versionsPad)
+    {
+        $this->versionsPad = $versionsPad;
+    }
+
+
     public function play()
     {
         $this->sandboxInit();
@@ -95,7 +95,7 @@ class Sandbox
         .'<link rel="stylesheet" type="text/css" href="sandbox.css" />'
         .'<title>'.$this->sandboxTitle.' / sandbox</title>'
         .'</head><body><h1><a href="./">'
-		.$this->sandboxTitle
+        .$this->sandboxTitle
         .'</a></h1><h2><a href="'.$this->self.'">Sandbox</a></h2>';
     }
 
