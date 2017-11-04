@@ -52,20 +52,18 @@ class Tools
     }
 
     /**
+     * Get the length of the longest string in an array
+     *
      * @param array $array
      * @return int
      */
     public static function getLongestStringLengthInArray(array $array)
     {
-        $length = 0;
-        foreach ($array as $string) {
-            if (!is_string($string)) {
-                continue;
-            }
-            if (strlen($string) > $length) {
-                $length = strlen($string);
+        foreach ($array as $key => $val) {
+            if (!is_string($val)) {
+                unset($array[$key]);
             }
         }
-        return $length;
+        return max(array_map('strlen', $array));
     }
 }
