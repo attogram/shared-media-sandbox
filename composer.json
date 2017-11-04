@@ -1,0 +1,16 @@
+{
+    "name": "attogram/shared-media-sandbox",
+    "description": "Web Sandbox for testing attogram/shared-media-* packages",
+    "type": "library",
+    "license": "(MIT or GPL-3.0+)",
+    "homepage": "https://github.com/attogram/shared-media-sandbox",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5",
+	},
+    "autoload": {
+        "psr-4": {
+            "Attogram\\SharedMedia\\Sandbox\\": "src/"
+        }
+    }
+}
