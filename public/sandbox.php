@@ -1,13 +1,18 @@
-<?php // attogram/shared-media-sandbox - sandbox.php - v0.0.2
+<?php // attogram/shared-media-sandbox - sandbox.php - v0.0.3
 
 use Attogram\SharedMedia\Sandbox\Sandbox;
 
 $autoload = '../vendor/autoload.php';
 if (!is_readable($autoload)) {
-    print 'ERROR: Autoloader not found: ' . $autoload;
+    print 'ERROR: Autoloader Not Found: ' . $autoload;
     return false;
 }
 require_once($autoload);
+
+if (!class_exists('Attogram\SharedMedia\Sandbox\Sandbox')) {
+    print 'ERROR: Sandbox Class Not Found';
+    return false;
+}
 
 $sandbox = new Sandbox();
 
