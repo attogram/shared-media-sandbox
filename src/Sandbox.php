@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.7';
+    const VERSION = '0.0.8';
 
     const DEFAULT_LIMIT = 10;
 
@@ -12,8 +12,6 @@ class Sandbox
     public $sources = [];
     public $sandboxTitle = 'shared-media-sandbox';
     public $versions = [];
-
-    public $self;
     public $class;
     public $method;
     public $arg;
@@ -41,7 +39,6 @@ class Sandbox
 
     public function sandboxInit()
     {
-        $this->self = isset($_SERVER['PHP_SELF']) ? $_SERVER['PHP_SELF'] : null;
         $this->endpoint = Tools::getGet('endpoint');
         $this->class = Tools::getGet('class');
         $this->method = Tools::getGet('method');
@@ -80,7 +77,7 @@ class Sandbox
         .'<style type="text/css">'.$css.'</style>'
         .'<title>'.$this->sandboxTitle.' / sandbox</title>'
         .'</head><body><h1><a href="./">'.$this->sandboxTitle.'</a></h1>'
-        .'<h2><a href="'.$this->self.'">Sandbox</a></h2>';
+        .'<h2><a href="">Sandbox</a></h2>';
     }
 
     public function getFooter()
@@ -88,7 +85,7 @@ class Sandbox
         $padding = Tools::getLongestStringLengthInArray($this->versions);
         $foot = '<footer><hr />'
         .'<a href="./">'.$this->sandboxTitle
-        .'</a> : <a href="'.$this->self.'">sandbox</a><pre>';
+        .'</a> : <a href="">sandbox</a><pre>';
         foreach ($this->versions as $version) {
             $foot .= str_pad($version, $padding, ' ').' v'.$version::VERSION.'<br />';
         }
@@ -105,7 +102,7 @@ class Sandbox
                 $menu .= '</div><div class="menubox">'.$class.'::';
             }
             $menu .= '<div class="menu">'
-                .'<a href="'.$this->self.'?class='.$class.'&amp;method='.$method.'">'.$method.'</a>'
+                .'<a href="?class='.$class.'&amp;method='.$method.'">'.$method.'</a>'
                 .'</div>';
             $lastClass = $class;
         }
