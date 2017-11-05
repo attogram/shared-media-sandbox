@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.3';
+    const VERSION = '0.0.4';
 
     const DEFAULT_LIMIT = 10;
 
@@ -35,6 +35,7 @@ class Sandbox
     {
         $this->sources = $sources;
     }
+
     public function setTitle(string $title)
     {
         $this->sandboxTitle = $title;
@@ -81,11 +82,18 @@ class Sandbox
 
     public function getHeader()
     {
+        $cssFile = __DIR__.'/../public/sandbox.css';
+        $css = '';
+        if (is_readable($cssFile)) {
+            $css = file_get_contents($cssFile);
+        } else {
+            $this->logger->error('getHeader: CSS File Not Readable:', [$cssFile]);
+        }
         return '<!DOCTYPE html><html><head>'
         .'<meta charset="UTF-8">'
         .'<meta name="viewport" content="initial-scale=1" />'
         .'<meta http-equiv="X-UA-Compatible" content="IE=edge" />'
-        .'<link rel="stylesheet" type="text/css" href="sandbox.css" />'
+        .'<style>'.$css.'</style>'
         .'<title>'.$this->sandboxTitle.' / sandbox</title>'
         .'</head><body><h1><a href="./">'
         .$this->sandboxTitle
@@ -160,8 +168,7 @@ class Sandbox
         return 'endpoint:'.$this->endpointSelect()
         .'&nbsp; <nobr>limit:<input name="limit" value="'.$this->limit.'" type="text" size="5" /></nobr>'
         .'&nbsp; <nobr>logLevel:'.$this->logLevelSelect().'</nobr>'
-        .'&nbsp; <nobr>format:'.$this->formatSelect().'</nobr>'
-        ;
+        .'&nbsp; <nobr>format:'.$this->formatSelect().'</nobr>';
     }
 
     public function identifierForm()
