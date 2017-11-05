@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.5';
+    const VERSION = '0.0.6';
 
     const DEFAULT_LIMIT = 10;
 
@@ -49,7 +49,10 @@ class Sandbox
     public function play()
     {
         $this->sandboxInit();
-        print $this->getHeader().'<br />'.$this->menu().$this->form();
+        print $this->getHeader()
+            .'<br />'
+            .$this->menu()
+            .$this->form();
         if (Tools::hasGet('play')) {
             print $this->getResponse();
         }
@@ -96,9 +99,8 @@ class Sandbox
         .'<meta http-equiv="X-UA-Compatible" content="IE=edge" />'
         .'<style type="text/css">'.$css.'</style>'
         .'<title>'.$this->sandboxTitle.' / sandbox</title>'
-        .'</head><body><h1><a href="./">'
-        .$this->sandboxTitle
-        .'</a></h1><h2><a href="'.$this->self.'">Sandbox</a></h2>';
+        .'</head><body><h1><a href="./">'.$this->sandboxTitle.'</a></h1>'
+        .'<h2><a href="'.$this->self.'">Sandbox</a></h2>';
     }
 
     public function getFooter()
@@ -108,9 +110,7 @@ class Sandbox
         .'<a href="./">'.$this->sandboxTitle
         .'</a> : <a href="'.$this->self.'">sandbox</a><pre>';
         foreach ($this->versions as $version) {
-            $foot .= str_pad($version, $padding, ' ')
-                .' v'.$version::VERSION
-                .'<br />';
+            $foot .= str_pad($version, $padding, ' ').' v'.$version::VERSION.'<br />';
         }
         $foot .= '</pre></footer></body></html>';
         return $foot;
@@ -152,32 +152,38 @@ class Sandbox
             .'<input type="hidden" name="play" value="1" />'
             .'<input type="hidden" name="class" value="'.$this->class.'" />'
             .'<input type="hidden" name="method" value="'.$this->method.'" />'
-            .$this->apiForm();
-        if ($action[3]) {
-            $form .= $this->identifierForm();
+            .'endpoint:'.$this->endpointSelect()
+            .'&nbsp; <nobr>limit:<input name="limit" value="'.$this->limit.'" type="text" size="5" /></nobr>'
+            .'&nbsp; <nobr>format:'
+            .'<select name="format">'
+            .'<option value="html"'.Tools::isSelected('html', $this->format).'>HTML</option>'
+            .'<option value="raw"'.Tools::isSelected('raw', $this->format).'>Raw</option>'
+            .'</select>'
+            .'</nobr>'
+            .'&nbsp; <nobr>logLevel:'
+            .'<select name="logLevel">'
+            .'<option value="DEBUG"'.Tools::isSelected('DEBUG', $this->logLevel).'>debug</option>'
+            .'<option value="INFO"'.Tools::isSelected('INFO', $this->logLevel).'>info</option>'
+            .'<option value="NOTICE"'.Tools::isSelected('NOTICE', $this->logLevel).'>notice</option>'
+            .'<option value="WARNING"'.Tools::isSelected('WARNING', $this->logLevel).'>warning</option>'
+            .'<option value="ERROR"'.Tools::isSelected('ERROR', $this->logLevel).'>error</option>'
+            .'<option value="CRITICAL"'.Tools::isSelected('CRITICAL', $this->logLevel).'>critical</option>'
+            .'<option value="ALERT"'.Tools::isSelected('ALERT', $this->logLevel).'>alert</option>'
+            .'<option value="EMERGENCY'.Tools::isSelected('EMERGENCY', $this->logLevel).'">emergency</option>'
+            .'</select>'
+            .'</nobr>';
+        if ($action[3]) { // Requires Identifier
+            $form .= '<br />Identifier: '
+            . 'Titles:<input name="titles" value="'.$this->titles.'" type="text" size="30" />'
+            . ' OR: '
+            . 'Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
         }
-        if ($action[2]) {
+        if ($action[2]) { // Requires argument
             $form .= '<br />'.$action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
         }
         $form .= '<br /><input type="submit" value="         '
             .$this->class.'::'.$this->method.'         "/></form>';
         return $form;
-    }
-
-    public function apiForm()
-    {
-        return 'endpoint:'.$this->endpointSelect()
-        .'&nbsp; <nobr>limit:<input name="limit" value="'.$this->limit.'" type="text" size="5" /></nobr>'
-        .'&nbsp; <nobr>logLevel:'.$this->logLevelSelect().'</nobr>'
-        .'&nbsp; <nobr>format:'.$this->formatSelect().'</nobr>';
-    }
-
-    public function identifierForm()
-    {
-        return '<br />Identifier: '
-        . 'Titles:<input name="titles" value="'.$this->titles.'" type="text" size="30" />'
-        . ' OR: '
-        . 'Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
     }
 
     public function endpointSelect()
@@ -192,28 +198,6 @@ class Sandbox
         }
         $select .= '</select>';
         return $select;
-    }
-
-    public function logLevelSelect()
-    {
-        return '<select name="logLevel">'
-        .'<option value="DEBUG"'.Tools::isSelected('DEBUG', $this->logLevel).'>debug</option>'
-        .'<option value="INFO"'.Tools::isSelected('INFO', $this->logLevel).'>info</option>'
-        .'<option value="NOTICE"'.Tools::isSelected('NOTICE', $this->logLevel).'>notice</option>'
-        .'<option value="WARNING"'.Tools::isSelected('WARNING', $this->logLevel).'>warning</option>'
-        .'<option value="ERROR"'.Tools::isSelected('ERROR', $this->logLevel).'>error</option>'
-        .'<option value="CRITICAL"'.Tools::isSelected('CRITICAL', $this->logLevel).'>critical</option>'
-        .'<option value="ALERT"'.Tools::isSelected('ALERT', $this->logLevel).'>alert</option>'
-        .'<option value="EMERGENCY'.Tools::isSelected('EMERGENCY', $this->logLevel).'">emergency</option>'
-        .'</select>';
-    }
-
-    public function formatSelect()
-    {
-        return '<select name="format">'
-        .'<option value="html"'.Tools::isSelected('html', $this->format).'>HTML</option>'
-        .'<option value="raw"'.Tools::isSelected('raw', $this->format).'>Raw</option>'
-        .'</select>';
     }
 
     public function getResponse()
