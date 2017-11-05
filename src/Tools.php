@@ -7,7 +7,7 @@ namespace Attogram\SharedMedia\Sandbox;
  */
 class Tools
 {
-    const VERSION = '0.0.1';
+    const VERSION = '0.0.2';
 
     /**
      * @param string $str1
@@ -64,6 +64,9 @@ class Tools
                 unset($array[$key]);
             }
         }
+		if (empty($array)) {
+			return 0;
+		}
         return max(array_map('strlen', $array));
     }
 }
