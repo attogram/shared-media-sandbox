@@ -64,9 +64,9 @@ class Tools
                 unset($array[$key]);
             }
         }
-		if (empty($array)) {
-			return 0;
-		}
+        if (empty($array)) {
+            return 0;
+        }
         return max(array_map('strlen', $array));
     }
 }
