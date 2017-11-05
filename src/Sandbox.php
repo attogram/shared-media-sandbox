@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '1.0.1';
+    const VERSION = '1.0.2';
 
     const DEFAULT_LIMIT = 10;
 
@@ -168,7 +168,7 @@ class Sandbox
         $class->setPageid($this->pageids);              // Set the pageid identifier
         $class->setTitle($this->titles);                // Set the title identifier
         $class->setEndpoint($this->endpoint);           // Set the API endpoint
-        $class->setLimit($this->limit);                 // Set the # of responses to get
+        $class->setResponseLimit($this->limit);         // Set the # of responses to get
         $results = $class->{$this->method}($this->arg); // get results as an array or arrays
         switch ($this->format) {
             case 'raw':
