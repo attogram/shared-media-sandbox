@@ -2,7 +2,7 @@
     "name": "attogram/shared-media-sandbox",
     "description": "Web Sandbox for testing packages attogram/shared-media-api and attogram/shared-media-orm",
     "type": "library",
-    "license": "(MIT or GPL-3.0+)",
+    "license": "MIT",
     "homepage": "https://github.com/attogram/shared-media-sandbox",
     "minimum-stability": "dev",
     "require": {
@@ -14,8 +14,13 @@
             "Attogram\\SharedMedia\\Sandbox\\": "src/"
         }
     },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0.1-dev"
+        }
+    },
     "suggest": {
-        "attogram/shared-media-api": "MediaWiki Query API wrapper that easily gets Category and Media file information into simple PHP arrays. Fine-tuned for WikiMedia Commmons.",
+        "attogram/shared-media-api": "MediaWiki Query API wrapper to easily get Category and Media file information into simple PHP arrays. Fine-tuned for WikiMedia Commmons.",
         "attogram/shared-media-orm": "ORM for attogram/shared-media-api"
     }
 }
