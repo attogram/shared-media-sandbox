@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.6';
+    const VERSION = '0.0.7';
 
     const DEFAULT_LIMIT = 10;
 
@@ -24,27 +24,7 @@ class Sandbox
     public $logger;
     public $pageids;
     public $titles;
-
-
-    public function setMethods(array $methods)
-    {
-        $this->methods = $methods;
-    }
-
-    public function setSources(array $sources)
-    {
-        $this->sources = $sources;
-    }
-
-    public function setTitle(string $title)
-    {
-        $this->sandboxTitle = $title;
-    }
-
-    public function setVersions(array $versions)
-    {
-        $this->versions = $versions;
-    }
+    public $action = [];
 
     public function play()
     {
@@ -133,35 +113,17 @@ class Sandbox
         return $menu.'</div>';
     }
 
-    public function getMethodInfo()
-    {
-        foreach ($this->methods as $key => $val) {
-            if ($val[0] == $this->class && $val[1] == $this->method) {
-                return $this->methods[$key];
-            }
-        }
-    }
-
     public function form()
     {
-        $action = $this->getMethodInfo();
-        if (!$action) {
-            return;
-        }
-        $form = '<form>'
-            .'<input type="hidden" name="play" value="1" />'
+        $form = '<form><input type="hidden" name="play" value="1" />'
             .'<input type="hidden" name="class" value="'.$this->class.'" />'
             .'<input type="hidden" name="method" value="'.$this->method.'" />'
             .'endpoint:'.$this->endpointSelect()
             .'&nbsp; <nobr>limit:<input name="limit" value="'.$this->limit.'" type="text" size="5" /></nobr>'
-            .'&nbsp; <nobr>format:'
-            .'<select name="format">'
+            .'&nbsp; <nobr>format:<select name="format">'
             .'<option value="html"'.Tools::isSelected('html', $this->format).'>HTML</option>'
             .'<option value="raw"'.Tools::isSelected('raw', $this->format).'>Raw</option>'
-            .'</select>'
-            .'</nobr>'
-            .'&nbsp; <nobr>logLevel:'
-            .'<select name="logLevel">'
+            .'</select></nobr>&nbsp; <nobr>logLevel:<select name="logLevel">'
             .'<option value="DEBUG"'.Tools::isSelected('DEBUG', $this->logLevel).'>debug</option>'
             .'<option value="INFO"'.Tools::isSelected('INFO', $this->logLevel).'>info</option>'
             .'<option value="NOTICE"'.Tools::isSelected('NOTICE', $this->logLevel).'>notice</option>'
@@ -170,19 +132,15 @@ class Sandbox
             .'<option value="CRITICAL"'.Tools::isSelected('CRITICAL', $this->logLevel).'>critical</option>'
             .'<option value="ALERT"'.Tools::isSelected('ALERT', $this->logLevel).'>alert</option>'
             .'<option value="EMERGENCY'.Tools::isSelected('EMERGENCY', $this->logLevel).'">emergency</option>'
-            .'</select>'
-            .'</nobr>';
-        if ($action[3]) { // Requires Identifier
-            $form .= '<br />Identifier: '
-            . 'Titles:<input name="titles" value="'.$this->titles.'" type="text" size="30" />'
-            . ' OR: '
-            . 'Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
+            .'</select></nobr>';
+        if (isset($this->action[3]) && $this->action[3]) { // Requires Identifier
+            $form .= '<br />Identifier: Titles:<input name="titles" value="'.$this->titles.'" type="text" size="30" />'
+            . ' OR: Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
         }
-        if ($action[2]) { // Requires argument
+        if (isset($this->action[2]) && $this->action[2]) { // Requires argument
             $form .= '<br />'.$action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
         }
-        $form .= '<br /><input type="submit" value="         '
-            .$this->class.'::'.$this->method.'         "/></form>';
+        $form .= '<br /><input type="submit" value="         '.$this->class.'::'.$this->method.'         "/></form>';
         return $form;
     }
 
@@ -241,5 +199,35 @@ class Sandbox
             return false;
         }
         return new $this->class($this->logger);
+    }
+
+    public function getMethodInfo()
+    {
+        foreach ($this->methods as $key => $val) {
+            if ($val[0] == $this->class && $val[1] == $this->method) {
+                return $this->methods[$key];
+            }
+        }
+    }
+
+    public function setMethods(array $methods)
+    {
+        $this->methods = $methods;
+        $this->action = $this->getMethodInfo();
+    }
+
+    public function setSources(array $sources)
+    {
+        $this->sources = $sources;
+    }
+
+    public function setTitle(string $title)
+    {
+        $this->sandboxTitle = $title;
+    }
+
+    public function setVersions(array $versions)
+    {
+        $this->versions = $versions;
     }
 }
