@@ -115,10 +115,8 @@ class Sandbox
 
     public function form()
     {
-        $form = '<form><input type="hidden" name="play" value="1" />'
-            .'<input type="hidden" name="class" value="'.$this->class.'" />'
+        $form = '<form><input type="hidden" name="play" value="1" />endpoint:'.$this->endpointSelect()
             .'<input type="hidden" name="method" value="'.$this->method.'" />'
-            .'endpoint:'.$this->endpointSelect()
             .'&nbsp; <nobr>limit:<input name="limit" value="'.$this->limit.'" type="text" size="5" /></nobr>'
             .'&nbsp; <nobr>format:<select name="format">'
             .'<option value="html"'.Tools::isSelected('html', $this->format).'>HTML</option>'
@@ -132,7 +130,7 @@ class Sandbox
             .'<option value="CRITICAL"'.Tools::isSelected('CRITICAL', $this->logLevel).'>critical</option>'
             .'<option value="ALERT"'.Tools::isSelected('ALERT', $this->logLevel).'>alert</option>'
             .'<option value="EMERGENCY'.Tools::isSelected('EMERGENCY', $this->logLevel).'">emergency</option>'
-            .'</select></nobr>';
+            .'</select></nobr><input type="hidden" name="class" value="'.$this->class.'" />';
         if (isset($this->action[3]) && $this->action[3]) { // Requires Identifier
             $form .= '<br />Identifier: Titles:<input name="titles" value="'.$this->titles.'" type="text" size="30" />'
             . ' OR: Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
@@ -140,7 +138,7 @@ class Sandbox
         if (isset($this->action[2]) && $this->action[2]) { // Requires argument
             $form .= '<br />'.$this->action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
         }
-        return $form.'<br /><input type="submit" value="         '.$this->class.'::'.$this->method.'         "/></form>';
+        return $form.'<br /><input type="submit" value="        '.$this->class.'::'.$this->method.'        "/></form>';
     }
 
     public function endpointSelect()
