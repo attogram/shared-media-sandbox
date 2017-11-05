@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.8';
+    const VERSION = '1.0.0';
 
     const DEFAULT_LIMIT = 10;
 

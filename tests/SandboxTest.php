@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
  */
 class SandboxTest extends TestCase
 {
-    const VERSION = '0.0.1';
+    const VERSION = '1.0.0';
 
     /**
      */

@@ -1,4 +1,4 @@
-<?php // attogram/shared-media-sandbox - sandbox.php - v0.0.3
+<?php // attogram/shared-media-sandbox - sandbox.php - v1.0.0
 
 use Attogram\SharedMedia\Sandbox\Sandbox;
 

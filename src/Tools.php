@@ -7,7 +7,7 @@ namespace Attogram\SharedMedia\Sandbox;
  */
 class Tools
 {
-    const VERSION = '0.0.2';
+    const VERSION = '1.0.0';
 
     /**
      * @param string $str1
