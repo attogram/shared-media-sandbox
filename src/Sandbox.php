@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.1';
+    const VERSION = '0.0.2';
 
     const DEFAULT_LIMIT = 10;
 
@@ -239,11 +239,13 @@ class Sandbox
 
     public function getClass()
     {
-        switch ($this->class) {
-            case 'TEST':
-                return new Test();
-            default:
-                return new \StdClass();
+        $classNames = array_unique(array_column($this->methods, '0'));
+        if (in_array($this->class, $classNames)) {
+            if (class_exists($this->class)) {
+                return new $this->class($this->logger);
+            }
         }
+        $this->logger->error('SANDBOX: ERROR: class not found');
+        return new \StdClass();
     }
 }
