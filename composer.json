@@ -13,5 +13,9 @@
         "psr-4": {
             "Attogram\\SharedMedia\\Sandbox\\": "src/"
         }
-    }
+    },
+	"suggest": {
+		"attogram/shared-media-api": "MediaWiki Query API wrapper that easily gets Category and Media file information into simple PHP arrays. Fine-tuned for WikiMedia Commmons.",
+		"attogram/shared-media-orm": "ORM for attogram/shared-media-api"
+	}
 }

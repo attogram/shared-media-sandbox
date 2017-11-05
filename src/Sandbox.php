@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.4';
+    const VERSION = '0.0.5';
 
     const DEFAULT_LIMIT = 10;
 
@@ -94,7 +94,7 @@ class Sandbox
         .'<meta charset="UTF-8">'
         .'<meta name="viewport" content="initial-scale=1" />'
         .'<meta http-equiv="X-UA-Compatible" content="IE=edge" />'
-        .'<style>'.$css.'</style>'
+        .'<style type="text/css">'.$css.'</style>'
         .'<title>'.$this->sandboxTitle.' / sandbox</title>'
         .'</head><body><h1><a href="./">'
         .$this->sandboxTitle
