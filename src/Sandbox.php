@@ -138,10 +138,9 @@ class Sandbox
             . ' OR: Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
         }
         if (isset($this->action[2]) && $this->action[2]) { // Requires argument
-            $form .= '<br />'.$action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
+            $form .= '<br />'.$this->action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
         }
-        $form .= '<br /><input type="submit" value="         '.$this->class.'::'.$this->method.'         "/></form>';
-        return $form;
+        return $form.'<br /><input type="submit" value="         '.$this->class.'::'.$this->method.'         "/></form>';
     }
 
     public function endpointSelect()
