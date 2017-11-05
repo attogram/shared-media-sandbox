@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '1.0.0';
+    const VERSION = '1.0.1';
 
     const DEFAULT_LIMIT = 10;
 
@@ -24,20 +24,7 @@ class Sandbox
     public $titles;
     public $action = [];
 
-    public function play()
-    {
-        $this->sandboxInit();
-        print $this->getHeader()
-            .'<br />'
-            .$this->menu()
-            .$this->form();
-        if (Tools::hasGet('play')) {
-            print $this->getResponse();
-        }
-        print $this->getFooter();
-    }
-
-    public function sandboxInit()
+    public function __construct()
     {
         $this->endpoint = Tools::getGet('endpoint');
         $this->class = Tools::getGet('class');
@@ -58,6 +45,18 @@ class Sandbox
             $this->format = 'html';
         }
         $this->logger = new Logger($this->logLevel);
+    }
+
+    public function play()
+    {
+        print $this->getHeader()
+            .'<br />'
+            .$this->menu()
+            .$this->form();
+        if (Tools::hasGet('play')) {
+            print $this->getResponse();
+        }
+        print $this->getFooter();
     }
 
     public function getHeader()
