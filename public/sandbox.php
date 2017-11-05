@@ -1,4 +1,4 @@
-<?php // attogram/shared-media-sandbox - sandbox.php - v0.0.1
+<?php // attogram/shared-media-sandbox - sandbox.php - v0.0.2
 
 use Attogram\SharedMedia\Sandbox\Sandbox;
 
@@ -14,13 +14,11 @@ $sandbox = new Sandbox();
 $sandbox->setTitle('shared-media-sandbox');
 
 $sandbox->setMethods([
-	// Class, Method, Arg, Identifiers
+    // Class, Method, Arg, Identifiers
     ['CLASS_1', 'METHOD_A', 'ARG_1', true],
     ['CLASS_1', 'METHOD_B', 'ARG_2', false],
-    ['CLASS_2', 'METHOD_C', 'ARG_3', true],
-    ['CLASS_2', 'METHOD_D', 'ARG_4', false],
-    ['CLASS_2', 'METHOD_E', false, false],
-    ['CLASS_2', 'METHOD_E', false, true],
+    ['CLASS_2', 'METHOD_C', false, false],
+    ['CLASS_2', 'METHOD_D', false, true],
 ]);
 
 $sandbox->setVersions([

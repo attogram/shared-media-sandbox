@@ -83,10 +83,11 @@ class Sandbox
     public function getHeader()
     {
         $cssFile = __DIR__.'/../public/sandbox.css';
-        $css = '';
         if (is_readable($cssFile)) {
             $css = file_get_contents($cssFile);
-        } else {
+        }
+        if (!isset($css)) {
+            $css = '';
             $this->logger->error('getHeader: CSS File Not Readable:', [$cssFile]);
         }
         return '<!DOCTYPE html><html><head>'
@@ -151,12 +152,12 @@ class Sandbox
             .'<input type="hidden" name="play" value="1" />'
             .'<input type="hidden" name="class" value="'.$this->class.'" />'
             .'<input type="hidden" name="method" value="'.$this->method.'" />'
-            .$this->apiForm().'<br />';
+            .$this->apiForm();
         if ($action[3]) {
             $form .= $this->identifierForm();
         }
         if ($action[2]) {
-            $form .= $action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
+            $form .= '<br />'.$action[2] .': <input name="arg" type="text" size="42" value="'.$this->arg.'" />';
         }
         $form .= '<br /><input type="submit" value="         '
             .$this->class.'::'.$this->method.'         "/></form>';
@@ -173,7 +174,7 @@ class Sandbox
 
     public function identifierForm()
     {
-        return 'Identifier: '
+        return '<br />Identifier: '
         . 'Titles:<input name="titles" value="'.$this->titles.'" type="text" size="30" />'
         . ' OR: '
         . 'Pageids:<input name="pageids" value="'.$this->pageids.'" type="text" size="30" />';
@@ -225,9 +226,6 @@ class Sandbox
             return 'SANDBOX ERROR: Missing Arg: '.$action[2];
         }
         $class = $this->getClass();                     // get the requested class
-        if (!$class) {
-            return;
-        }
         if (!is_callable([$class, $this->method])) {
             return 'SANDBOX ERROR: Class::method not found';
         }
