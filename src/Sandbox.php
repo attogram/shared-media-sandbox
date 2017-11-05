@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox
 {
-    const VERSION = '0.0.2';
+    const VERSION = '0.0.3';
 
     const DEFAULT_LIMIT = 10;
 
@@ -210,7 +210,7 @@ class Sandbox
 
     public function getResponse()
     {
-        $action = $this->getMethodInfo();               // get all allowed actions
+        $action = $this->getMethodInfo();               // get status of Class::method
         if (!$action) {
             return 'SANDBOX ERROR: Class::method not allowed';
         }
@@ -218,6 +218,9 @@ class Sandbox
             return 'SANDBOX ERROR: Missing Arg: '.$action[2];
         }
         $class = $this->getClass();                     // get the requested class
+        if (!$class) {
+            return;
+        }
         if (!is_callable([$class, $this->method])) {
             return 'SANDBOX ERROR: Class::method not found';
         }
@@ -240,12 +243,14 @@ class Sandbox
     public function getClass()
     {
         $classNames = array_unique(array_column($this->methods, '0'));
-        if (in_array($this->class, $classNames)) {
-            if (class_exists($this->class)) {
-                return new $this->class($this->logger);
-            }
+        if (!in_array($this->class, $classNames)) {
+            $this->logger->critical('getClass: Class Denied:', [$this->class]);
+            return false;
         }
-        $this->logger->error('SANDBOX: ERROR: class not found');
-        return new \StdClass();
+        if (!class_exists($this->class)) {
+            $this->logger->critical('getClass: Class Not Found:', [$this->class]);
+            return false;
+        }
+        return new $this->class($this->logger);
     }
 }
