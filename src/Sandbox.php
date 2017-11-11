@@ -8,11 +8,6 @@ class Sandbox extends Base
 
     const DEFAULT_LIMIT = 10;
 
-    /**
-     * [ [Class, Method, ArgName, RequiresIdentifiers], ...]
-     */
-    protected $methods = [];
-
     public $class;
     public $method;
     public $arg;
