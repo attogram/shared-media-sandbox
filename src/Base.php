@@ -106,18 +106,8 @@ class Base
         $this->sources = $sources;
     }
 
-    public function setVersions(array $versions)
-    {
-        $this->versions = $versions;
-    }
-
     public function setPreCall(array $preCall)
     {
         $this->preCall = $preCall;
-    }
-
-    public function setPostCall(array $postCall)
-    {
-        $this->postCall = $postCall;
     }
 }

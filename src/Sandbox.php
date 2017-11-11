@@ -24,7 +24,7 @@ class Sandbox extends Base
     public $titles;
     public $action = [];
 
-    public function  __construct($htmlTitle = 'Sandbox')
+    public function __construct($htmlTitle = 'Sandbox')
     {
         parent:: __construct($htmlTitle);
         $this->endpoint = Tools::getGet('endpoint');
