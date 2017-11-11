@@ -1,4 +1,4 @@
-# attogram/shared-media-sandbox - .travis.yml - v1.0.0
+# attogram/shared-media-sandbox - .travis.yml - v1.1.0
 
 language: php
 
@@ -20,7 +20,6 @@ before_script:
   - phpunit --version
 
 script:
-  #- if find docs/ -name "*.php" -exec php -l {} 2>&1 \; | grep "error,"; then exit 1; fi;
   - if find public/ -name "*.php" -exec php -l {} 2>&1 \; | grep "error,"; then exit 1; fi;
   - if find src/ -name "*.php" -exec php -l {} 2>&1 \; | grep "error,"; then exit 1; fi;
   - if find tests/ -name "*.php" -exec php -l {} 2>&1 \; | grep "error,"; then exit 1; fi;

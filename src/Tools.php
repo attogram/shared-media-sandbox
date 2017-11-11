@@ -7,7 +7,7 @@ namespace Attogram\SharedMedia\Sandbox;
  */
 class Tools
 {
-    const VERSION = '1.0.1';
+    const VERSION = '1.1.0';
 
     /**
      * Check if an <option> in a <select> is selected
