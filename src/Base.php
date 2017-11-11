@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Base
 {
-    const VERSION = '1.1.0';
+    const VERSION = '1.1.1';
 
     /**
      * [ [Class, Method, ArgName, RequiresIdentifiers], ...]
@@ -63,7 +63,8 @@ class Base
         .'<title>'.$this->htmlTitle.' / sandbox</title>'
         .'</head><body>'
         .'<h1><a href="">'.$this->htmlTitle.'</a></h1>'
-        .'<h3><a href="./">about</a></h3>';
+        .'<h3><a href="./">about</a></h3>'
+		.'<br />';
         return $head;
     }
 
