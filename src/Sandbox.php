@@ -68,9 +68,9 @@ class Sandbox extends Base
 
     public function form()
     {
-		if (!$this->class || !$this->method) {
-			return;
-		}
+        if (!$this->class || !$this->method) {
+            return;
+        }
         $form = '<form><input type="hidden" name="play" value="1" />endpoint:'.$this->endpointSelect()
             .'<input type="hidden" name="method" value="'.$this->method.'" />'
             .'&nbsp; <nobr>limit:<input name="limit" value="'.$this->limit.'" type="text" size="5" /></nobr>'

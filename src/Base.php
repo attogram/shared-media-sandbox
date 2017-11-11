@@ -64,7 +64,7 @@ class Base
         .'</head><body>'
         .'<h1><a href="">'.$this->htmlTitle.'</a></h1>'
         .'<h3><a href="./">about</a></h3>'
-		.'<br />';
+        .'<br />';
         return $head;
     }
 
