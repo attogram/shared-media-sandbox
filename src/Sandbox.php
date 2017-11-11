@@ -122,7 +122,12 @@ class Sandbox extends Base
         }
         $results = $class->{$this->method}($this->arg); // get results as an array of arrays
         $this->logger->debug('SANDBOX: results:', [$results]);
-        $this->logger->debug('SANDBOX: format:', [$this->format]);
+        return $this->getResponseFormat($results, $class);
+    }
+
+    protected function getResponseFormat($results, $class)
+    {
+        $this->logger->debug('SANDBOX: getResponseFormat:', [$this->format]);
         switch ($this->format) {
             case 'raw':                                 // format for result: as PHP Array
                 $response = '<pre>'.var_dump($results, true).'</pre>';

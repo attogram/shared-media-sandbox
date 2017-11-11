@@ -6,11 +6,11 @@ class Base
 {
     const VERSION = '1.1.0';
 
-	/**
+    /**
      * [ [Class, Method, ArgName, RequiresIdentifiers], ...]
      */
     protected $methods = [];
-	
+
     /**
      * [ [name => Endpoint URL], ...]
      */
