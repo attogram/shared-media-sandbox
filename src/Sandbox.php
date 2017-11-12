@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox extends Base
 {
-    const VERSION = '1.1.2';
+    const VERSION = '1.1.3';
 
     const DEFAULT_LIMIT = 10;
 
@@ -138,12 +138,16 @@ class Sandbox extends Base
         $this->logger->debug('SANDBOX: getResponseFormat:', [$this->format]);
         switch ($this->format) {
             case 'raw':                                 // format for result: as PHP Array
-                $response = '<pre>'.var_dump($results, true).'</pre>';
+                $response = '<pre>'.var_dump($results).'</pre>';
                 break;
             case 'html':                                // format for result: as HTML string
             default:
-                $response = $class->format($results);
-                break;
+                if (is_callable([$class, 'format'])) {
+                    $response = $class->format($results);
+                    break;
+                }
+                $this->logger->error('SANDBOX: Method Not Found in Class: format');
+                $response = var_dump($results);
         }
         return $response;
     }

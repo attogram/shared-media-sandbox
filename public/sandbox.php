@@ -1,4 +1,4 @@
-<?php // attogram/shared-media-sandbox - sandbox.php - v1.1.2
+<?php // attogram/shared-media-sandbox - sandbox.php - v1.1.3
 
 use Attogram\SharedMedia\Sandbox\Sandbox;
 
@@ -18,10 +18,17 @@ $sandbox = new Sandbox('shared-media-sandbox');
 
 $sandbox->setMethods([
     // Class, Method, ArgName, RequiresIdentifiers
-    ['Attogram\SharedMedia\Sandbox\NullObject', 'METHOD_A', 'ARG_1', true],
-    ['Attogram\SharedMedia\Sandbox\NullObject', 'METHOD_B', 'ARG_2', false],
-    ['Attogram\SharedMedia\Sandbox\NullObject', 'METHOD_C', false,   true],
-    ['Attogram\SharedMedia\Sandbox\NullObject', 'METHOD_D', false,   false],
+    ['Attogram\SharedMedia\Sandbox\Tools', 'safeString', 'string',   false],
+    ['Attogram\SharedMedia\Sandbox\Tools', 'getGet',     '_GET',     false],
+    ['Attogram\SharedMedia\Sandbox\Tools', 'hasGet',     '_GET',     false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'emergency', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'alert', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'critical', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'error', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'warning', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'notice', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'info', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'debug', 'message',  false],
 ]);
 
 $sandbox->setSources([
@@ -32,10 +39,6 @@ $sandbox->setSources([
 
 $sandbox->setPreCall([
     // ['foo', 'bar'] == $class->foo($this->bar)
-    ['setPageid', 'pageids'],      // Set the pageid identifier
-    ['setTitle', 'titles'],        // Set the title identifier
-    ['setEndpoint', 'endpoint'],   // Set the API endpoint
-    ['setResponseLimit', 'limit'], // Set the # of responses to get
 ]);
 
 $sandbox->play();
