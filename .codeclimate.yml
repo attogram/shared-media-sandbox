@@ -1,4 +1,4 @@
-# attogram/shared-media-sandbox - codeclimate.yml - v1.1.0
+# attogram/shared-media-sandbox - codeclimate.yml - v1.1.2
 version: "2"
 exclude_patterns:
 - "vendor/"

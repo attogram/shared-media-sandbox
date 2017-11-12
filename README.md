@@ -1,4 +1,4 @@
-# shared-media-sandbox v1.1
+# shared-media-sandbox v1.1.2
 
 Web Sandbox for testing attogram/shared-media-* packages 
 
