@@ -85,27 +85,28 @@ class Base
 
     protected function getFooter()
     {
-        $foot = '<footer><hr />'
-            .'<pre>'.$this->getActiveClasses().'</pre>'
+        $foot = '<footer><br />'
+            .$this->getActiveClasses()
             .'</footer></body></html>';
         return $foot;
     }
 
     protected function getActiveClasses()
     {
-        $classes = '';
+        $classes = '<textarea rows="20" cols="100" style="width:100%;">';
         foreach (preg_grep('#^Attogram\\\\SharedMedia\\\\#', get_declared_classes()) as $class) {
-            $classes .= '<br />'.$class;
+            $classes .= $class;
             if (defined("$class::VERSION")) {
                 $classes .= "\tv".$class::VERSION;
             }
             $refClass = new \ReflectionClass($class);
             $methods = $refClass->getMethods(\ReflectionMethod::IS_PUBLIC);
             foreach ($methods as $method) {
-                $classes .= "<br />\t".$method->name;
+                $classes .= "\n\t".$method->name;
             }
+			$classes .= "\n";
         }
-        return $classes;
+        return $classes.'</textarea>';
     }
 
     protected function getCSS()
