@@ -94,7 +94,8 @@ class Base
     protected function getActiveClasses()
     {
         $classes = '<textarea rows="32" cols="100" style="width:100%;">';
-        foreach (preg_grep('#^Attogram\\\\SharedMedia\\\\#', get_declared_classes()) as $class) {
+		$match = '#^Attogram\\\\SharedMedia\\\\#';
+        foreach (preg_grep($match, get_declared_classes()) as $class) {
             $classes .= $class;
             if (defined("$class::VERSION")) {
                 $classes .= "\tv".$class::VERSION;
