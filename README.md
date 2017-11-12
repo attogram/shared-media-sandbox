@@ -14,4 +14,4 @@ Web Sandbox for testing attogram/shared-media-* packages
 * packagist: https://packagist.org/packages/attogram/shared-media-sandbox
 * travis-ci: https://travis-ci.org/attogram/shared-media-sandbox
 * codeclimate: https://codeclimate.com/github/attogram/shared-media-sandbox
-* shared-media-sandbox is Dual Licensed under the MIT or GPL-3.0+, at your choosing.
+* shared-media-sandbox is licensed under The MIT License.

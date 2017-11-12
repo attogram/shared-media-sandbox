@@ -4,20 +4,20 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Sandbox extends Base
 {
-    const VERSION = '1.1.1';
+    const VERSION = '1.1.2';
 
     const DEFAULT_LIMIT = 10;
 
-    public $class;
-    public $method;
-    public $arg;
-    public $endpoint;
-    public $limit;
-    public $format;
-    public $logger;
-    public $pageids;
-    public $titles;
-    public $action = [];
+    protected $class;
+    protected $method;
+    protected $arg;
+    protected $endpoint;
+    protected $limit;
+    protected $format;
+    protected $logger;
+    protected $pageids;
+    protected $titles;
+    protected $action = [];
 
     public function __construct($htmlTitle = 'Sandbox')
     {
@@ -49,7 +49,13 @@ class Sandbox extends Base
         print $this->getFooter();
     }
 
-    public function menu()
+    public function setMethods(array $methods)
+    {
+        $this->methods = $methods;
+        $this->action = $this->getMethodInfo();
+    }
+
+    protected function menu()
     {
         $lastClass = null;
         $menu = '';
@@ -66,7 +72,7 @@ class Sandbox extends Base
         return $menu.'</div>';
     }
 
-    public function form()
+    protected function form()
     {
         if (!$this->class || !$this->method) {
             return;
@@ -90,7 +96,7 @@ class Sandbox extends Base
         return $form.'<br /><input type="submit" value="        '.$this->class.'::'.$this->method.'        "/></form>';
     }
 
-    public function endpointSelect()
+    protected function endpointSelect()
     {
         $select = '<select name="endpoint">';
         foreach ($this->sources as $source) {
@@ -104,7 +110,7 @@ class Sandbox extends Base
         return $select;
     }
 
-    public function getResponse()
+    protected function getResponse()
     {
         $action = $this->getMethodInfo();               // get status of Class::method
         if (!$action) {
@@ -142,7 +148,7 @@ class Sandbox extends Base
         return $response;
     }
 
-    public function getClass()
+    protected function getClass()
     {
         $classNames = array_unique(array_column($this->methods, '0'));
         if (!in_array($this->class, $classNames)) {
@@ -156,18 +162,12 @@ class Sandbox extends Base
         return new $this->class($this->logger);
     }
 
-    public function getMethodInfo()
+    protected function getMethodInfo()
     {
         foreach ($this->methods as $key => $val) {
             if ($val[0] == $this->class && $val[1] == $this->method) {
                 return $this->methods[$key];
             }
         }
-    }
-
-    public function setMethods(array $methods)
-    {
-        $this->methods = $methods;
-        $this->action = $this->getMethodInfo();
     }
 }

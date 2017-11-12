@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Base
 {
-    const VERSION = '1.1.1';
+    const VERSION = '1.1.2';
 
     /**
      * [ [Class, Method, ArgName, RequiresIdentifiers], ...]
@@ -24,17 +24,17 @@ class Base
     /**
      * PSR-3 Logger instance
      */
-    public $logger;
+    protected $logger;
 
     /**
      * PSR-3 Log Level
      */
-    public $logLevel;
+    protected $logLevel;
 
     /**
      * HTML Page <title>
      */
-    public $htmlTitle;
+    protected $htmlTitle;
 
 
     public function __construct($htmlTitle = 'Sandbox')
@@ -53,7 +53,22 @@ class Base
         print $this->getFooter();
     }
 
-    public function getHeader()
+    public function setMethods(array $methods)
+    {
+        $this->methods = $methods;
+    }
+
+    public function setSources(array $sources)
+    {
+        $this->sources = $sources;
+    }
+
+    public function setPreCall(array $preCall)
+    {
+        $this->preCall = $preCall;
+    }
+
+    protected function getHeader()
     {
         $head = '<!DOCTYPE html><html><head>'
         .'<meta charset="UTF-8">'
@@ -68,13 +83,13 @@ class Base
         return $head;
     }
 
-    public function getFooter()
+    protected function getFooter()
     {
         $foot = '<hr /></body></html>';
         return $foot;
     }
 
-    public function getCSS()
+    protected function getCSS()
     {
         $cssFile = __DIR__.'/../public/sandbox.css';
         if (!is_readable($cssFile)) {
@@ -87,7 +102,7 @@ class Base
         }
     }
 
-    public function getLogLevelSelect()
+    protected function getLogLevelSelect()
     {
         $select = '<select name="logLevel">'
         .'<option value="DEBUG"'.Tools::isSelected('DEBUG', $this->logLevel).'>debug</option>'
@@ -100,20 +115,5 @@ class Base
         .'<option value="EMERGENCY'.Tools::isSelected('EMERGENCY', $this->logLevel).'">emergency</option>'
         .'</select>';
         return $select;
-    }
-
-    public function setMethods(array $methods)
-    {
-        $this->methods = $methods;
-    }
-
-    public function setSources(array $sources)
-    {
-        $this->sources = $sources;
-    }
-
-    public function setPreCall(array $preCall)
-    {
-        $this->preCall = $preCall;
     }
 }
