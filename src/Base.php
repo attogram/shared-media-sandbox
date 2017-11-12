@@ -4,7 +4,7 @@ namespace Attogram\SharedMedia\Sandbox;
 
 class Base
 {
-    const VERSION = '1.1.3';
+    const VERSION = '1.1.4';
 
     /**
      * [ [Class, Method, ArgName, RequiresIdentifiers], ...]
@@ -86,8 +86,11 @@ class Base
     protected function getFooter()
     {
         $foot = '<footer><hr /><pre>';
-        foreach (preg_grep('#^Attogram\\\\SharedMedia#', get_declared_classes()) as $class) {
-            $foot .= $class."\tv".$class::VERSION.'<br />';
+        foreach (preg_grep('#^Attogram\\\\SharedMedia\\\\#', get_declared_classes()) as $class) {
+            $foot .= '<br />'.$class;
+            if (defined("$class::VERSION")) {
+                $foot .= "\tv".$class::VERSION;
+            }
         }
         $foot .= '</pre></footer></body></html>';
         return $foot;
