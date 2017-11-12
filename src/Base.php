@@ -104,7 +104,7 @@ class Base
             foreach ($methods as $method) {
                 $classes .= "\n\t".$method->name;
             }
-			$classes .= "\n";
+            $classes .= "\n";
         }
         return trim($classes).'</textarea>';
     }
