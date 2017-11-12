@@ -93,7 +93,7 @@ class Base
 
     protected function getActiveClasses()
     {
-        $classes = '<textarea rows="20" cols="100" style="width:100%;">';
+        $classes = '<textarea rows="30" cols="100" style="width:100%;">';
         foreach (preg_grep('#^Attogram\\\\SharedMedia\\\\#', get_declared_classes()) as $class) {
             $classes .= $class;
             if (defined("$class::VERSION")) {
