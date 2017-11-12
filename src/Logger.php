@@ -9,7 +9,7 @@ use Psr\Log\AbstractLogger;
  */
 class Logger extends AbstractLogger
 {
-    const VERSION = '1.1.2';
+    const VERSION = '1.1.3';
 
     private $level;
     private $levelKey;
@@ -40,7 +40,7 @@ class Logger extends AbstractLogger
         $this->levelKey= array_search($this->level, $this->levels);
     }
 
-    public function isLevel($level)
+    private function isLevel($level)
     {
         $currentLevelKey= array_search(strtoupper($level), $this->levels);
         if ($currentLevelKey <= $this->levelKey) {

@@ -7,7 +7,7 @@ namespace Attogram\SharedMedia\Sandbox;
  */
 class Tools
 {
-    const VERSION = '1.1.2';
+    const VERSION = '1.1.3';
 
     /**
      * Check if an <option> in a <select> is selected
@@ -64,24 +64,5 @@ class Tools
             return true;
         }
         return false;
-    }
-
-    /**
-     * Get the length of the longest string in an array
-     *
-     * @param array $array
-     * @return int
-     */
-    public static function getLongestStringLengthInArray($array)
-    {
-        foreach ($array as $key => $val) {
-            if (!is_string($val)) {
-                unset($array[$key]);
-            }
-        }
-        if (empty($array)) {
-            return 0;
-        }
-        return max(array_map('strlen', $array));
     }
 }
