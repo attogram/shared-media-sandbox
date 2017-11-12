@@ -14,7 +14,7 @@ if (!class_exists('Attogram\SharedMedia\Sandbox\Sandbox')) {
     return false;
 }
 
-$sandbox = new Sandbox('Sandbox Sandbox');
+$sandbox = new Sandbox('shared-media-sandbox');
 
 $sandbox->setMethods([
     // Class, Method, ArgName, RequiresIdentifiers
