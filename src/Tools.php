@@ -7,7 +7,7 @@ namespace Attogram\SharedMedia\Sandbox;
  */
 class Tools
 {
-    const VERSION = '1.1.3';
+    const VERSION = '1.1.4';
 
     /**
      * Check if an <option> in a <select> is selected
@@ -15,13 +15,14 @@ class Tools
      * @param string $str1
      * @param string $str2
      *
-     * @return string|void
+     * @return string
      */
     public static function isSelected($str1, $str2)
     {
         if ($str1 == $str2) {
             return ' selected ';
         }
+        return '';
     }
 
     /**

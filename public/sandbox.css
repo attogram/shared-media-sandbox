@@ -1,4 +1,4 @@
-/* attogram/shared-media-sandbox - sandbox.css - v1.1.2 */
+/* attogram/shared-media-sandbox - sandbox.css - v1.1.3 */
 body {
     background-color:#ddd;
     color:#000;
@@ -37,7 +37,7 @@ img {
 }
 input {
     font-family:monospace;
-    padding:2;
+    padding:2px;
 }
 ul {
     line-height: 1.5;

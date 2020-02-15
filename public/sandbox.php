@@ -1,4 +1,7 @@
-<?php // attogram/shared-media-sandbox - sandbox.php - v1.1.3
+<?php
+/**
+ * attogram/shared-media-sandbox - sandbox.php - v1.1.4
+ */
 
 use Attogram\SharedMedia\Sandbox\Sandbox;
 
@@ -18,17 +21,17 @@ $sandbox = new Sandbox('shared-media-sandbox');
 
 $sandbox->setMethods([
     // Class, Method, ArgName, RequiresIdentifiers
-    ['Attogram\SharedMedia\Sandbox\Tools', 'safeString', 'string',   false],
-    ['Attogram\SharedMedia\Sandbox\Tools', 'getGet',     '_GET',     false],
-    ['Attogram\SharedMedia\Sandbox\Tools', 'hasGet',     '_GET',     false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'emergency', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'alert', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'critical', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'error', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'warning', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'notice', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'info', 'message',  false],
-    ['Attogram\SharedMedia\Sandbox\Logger', 'debug', 'message',  false],
+    ['Attogram\SharedMedia\Sandbox\Tools',  'safeString', 'string',  false],
+    ['Attogram\SharedMedia\Sandbox\Tools',  'getGet',     '_GET',    false],
+    ['Attogram\SharedMedia\Sandbox\Tools',  'hasGet',     '_GET',    false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'emergency',  'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'alert',      'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'critical',   'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'error',      'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'warning',    'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'notice',     'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'info',       'message', false],
+    ['Attogram\SharedMedia\Sandbox\Logger', 'debug',      'message', false],
 ]);
 
 $sandbox->setSources([
